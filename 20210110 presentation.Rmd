@@ -1,0 +1,49 @@
+---
+title: "R&D Geo-visualisation app"
+author: "Sander Smit"
+date: "10 January, 2021"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Hi there!
+Thanks for taking the time to go through this presentation!
+
+One of the things I've had on my bucket list for years is creating a geographic visualization. I took this assignment as a reason to make one in R!
+
+I was a complete novice when it came to working with the data one needs for making such visualizations, so I'll say something about what I did and what I learned.
+
+The first thing you need for geographic plotting is a data set that contains geographic information. Luckily, I had one (a data set I collected years ago, see the app for more information).
+
+The big difference with a 'normal' data set (such as the data we typically work with in this specialization), is that geo-data also contains information about 'how to draw a map'.
+
+## What I did
+For example, I could collect data about the cities of the country I live in (The Netherlands). 'Normal' data in such a data set would be the number of inhabitants, founding year, how many restaurants it has, etc. Each row, thus, would be a city. Geo-data contains all the coordinates that would allow me to draw the map of these cities. So, per city I would need a table with an enormous amount of rows to hold all these coordinates!
+
+Luckily, there is a format -called simple features, or sf- that allows you to keep all these coordinates in just one cell, so it harmonizes well with the other data in the data set should you add this geo data. R has a package that facilitates this (the sf-package)
+
+## What I learned
+I learned that working with geographic data is challenging, yet fun! The challenge in my specific case was that my data was longitudinal. Because each year, municipalities in the Netherlands merge, but also sometimes that split up), it was quite an ordeal to harmonize all this. It took me about 300 lines of code! I also learned that instead of working with a separate ui.R and server.R file, you can put both together in one app.R file by using this template (it seems Brian Caffo's tutorial already was a bit outdated):
+
+```{r template, message = FALSE, warning = FALSE}
+library(shiny)
+
+ui <- fluidPage()
+
+server <- function(input, output) {}
+
+shinyApp(ui = ui, server = server)
+```
+
+## In closing
+So, I hope you had fun playing around with the app and going through this presentation. I wish you all the best in your future data science career. This is the 9th course I follow in this module so I know how challenging it can be sometimes to keep going. 
+
+Chapeau to you!
+
+And if you are interested in geo-plotting, have a look at the tmap-package. It is well documented and -in as far as I can judge that- I feel it beats the alternatives.
+
+Bye!
