@@ -3198,39 +3198,37 @@ slide:not(.current) .plotly.html-widget{
 
 <p>Thanks for taking the time to go through this presentation!</p>
 
-<p>One of the things I’ve had on my bucket list for years is creating a geographic visualization. I took this assignment as a reason to make one in R!</p>
+<p>One of the things I’ve had on my bucket list for years is creating a geographic visualization. I took this assignment as a reason to make one in R! I was a complete novice when it came to working with the data one needs for making such visualizations, so I’ll say something about what I did and what I learned.</p>
 
-<p>I was a complete novice when it came to working with the data one needs for making such visualizations, so I’ll say something about what I did and what I learned.</p>
-
-<p>The first thing you need for geographic plotting is a data set that contains geographic information. Luckily, I had one (a data set I collected years ago, see the app for more information).</p>
-
-<p>The big difference with a &lsquo;normal&rsquo; data set (such as the data we typically work with in this specialization), is that geo-data also contains information about &lsquo;how to draw a map&rsquo;.</p>
+<p>The first thing you need for geographic plotting is a data set that contains geographic information. The big difference with a &lsquo;normal&rsquo; data set (such as the data we typically work with in this specialization), is that geo-data also contains information about &lsquo;how to draw a map&rsquo;.</p>
 
 </article></slide><slide class=""><hgroup><h2>What I did</h2></hgroup><article  id="what-i-did">
 
-<p>For example, I could collect data about the cities of the country I live in (The Netherlands). &lsquo;Normal&rsquo; data in such a data set would be the number of inhabitants, founding year, how many restaurants it has, etc. Each row, thus, would be a city. Geo-data contains all the coordinates that would allow me to draw the map of these cities. So, per city I would need a table with an enormous amount of rows to hold all these coordinates!</p>
+<p>For example, we could collect data about the cities of the country I live in (The Netherlands). &lsquo;Normal&rsquo; data in such a data set would be the number of inhabitants, founding year, how many restaurants it has, etc. Each row, thus, would be a city. Geo-data contains all the coordinates that would allow me to draw the map of these cities. So, per city I would need a table with an enormous amount of rows to hold all these coordinates!</p>
 
-<p>Luckily, there is a format -called simple features, or sf- that allows you to keep all these coordinates in just one cell, so it harmonizes well with the other data in the data set should you add this geo data. R has a package that facilitates this (the sf-package)</p>
+<p>Luckily, there is a format -called simple features, or sf- that allows you to keep all these coordinates in just one cell, so it harmonizes well with the other data in the data set should you add this geo data. Such data looks as follows (look at the last column):</p>
 
-</article></slide><slide class=""><hgroup><h2>What I learned</h2></hgroup><article  id="what-i-learned">
+</article></slide><slide class=""><hgroup><h2>Geo data</h2></hgroup><article  id="geo-data">
 
-<p>I learned that working with geographic data is challenging, yet fun! The challenge in my specific case was that my data was longitudinal. Because each year, municipalities in the Netherlands merge, but also sometimes that split up), it was quite an ordeal to harmonize all this. It took me about 300 lines of code! I also learned that instead of working with a separate ui.R and server.R file, you can put both together in one app.R file by using this template (it seems Brian Caffo’s tutorial already was a bit outdated):</p>
+<pre class = 'prettyprint lang-r'>dir &lt;- &quot;/Users/alexandersmit/My Documents/Dropbox/Business/01. Career management/00. Skills/03. R/09. Developing Data Products/20210109 app&quot;
+setwd(dir)
+load(&quot;20210109 data.RData&quot;)
+head(geo.cod, 1)</pre>
 
-<pre class = 'prettyprint lang-r'>library(shiny)
-
-ui &lt;- fluidPage()
-
-server &lt;- function(input, output) {}
-
-shinyApp(ui = ui, server = server)</pre>
-
-<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+<pre >##                mun           prv nts.3
+## 2 &#39;s-Hertogenbosch Noord-Brabant NL413
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     geometry
+## 2 145625.1, 145317.7, 144951.6, 144754.2, 144636.4, 144531.5, 144905.4, 144150.3, 144088.0, 144037.4, 144211.7, 143967.5, 143785.4, 143569.1, 143403.2, 143114.5, 142760.1, 142786.0, 142518.9, 142889.3, 143600.0, 144218.6, 145190.7, 145484.2, 145900.0, 146500.0, 146810.5, 147300.0, 147822.4, 148400.0, 148700.0, 149000.0, 149273.4, 150500.0, 152674.0, 152838.8, 153386.9, 154201.9, 155249.5, 156687.9, 157440.6, 158177.9, 158644.7, 159109.9, 159455.2, 159603.7, 160007.1, 160176.5, 160353.0, 160543.3, 160942.4, 161120.8, 161049.3, 161865.1, 161851.4, 162343.4, 162708.5, 162283.2, 162299.0, 162226.0, 162655.5, 162722.7, 161017.3, 161062.2, 161339.4, 161469.3, 161744.0, 161972.0, 162634.6, 162761.5, 162730.8, 162323.6, 161616.0, 161296.9, 160714.9, 160056.4, 159964.4, 159817.7, 159533.1, 159458.7, 159022.2, 159108.6, 159054.7, 158881.8, 158632.0, 158603.7, 157945.3, 155745.6, 154898.5, 154201.4, 154026.3, 153906.2, 153662.7, 153549.1, 153180.9, 153080.6, 153142.6, 153559.5, 154265.8, 153957.9, 152935.6, 152914.2, 152582.8, 152491.9, 152839.1, 152695.0, 152743.1, 152682.0, 152008.5, 151837.2, 151873.2, 151634.0, 150868.6, 150286.0, 150038.4, 149242.4, 148802.8, 148426.5, 148280.2, 147908.5, 147717.1, 147237.9, 147056.5, 146596.8, 146136.3, 145775.6, 145361.0, 144713.2, 144424.4, 144261.4, 143864.4, 144043.3, 145402.3, 145442.5, 145625.1, 412301.3, 412654.8, 412515.5, 412596.9, 412899.4, 412887.6, 413913.6, 413550.9, 413737.9, 414000.0, 415042.5, 415391.8, 415337.1, 415641.4, 415504.3, 415858.9, 416150.6, 416569.4, 416989.0, 417128.1, 417199.0, 416965.8, 416176.6, 416104.6, 416250.0, 416686.0, 416777.8, 416834.0, 416789.5, 416509.0, 416448.0, 416511.0, 416673.9, 417537.0, 418531.7, 418081.9, 418087.3, 418352.7, 419032.3, 419274.1, 419386.8, 419519.4, 419600.0, 419426.3, 419542.4, 419614.4, 420253.5, 420235.6, 419457.1, 419223.1, 419325.2, 418923.6, 418811.6, 418260.1, 418125.4, 417657.7, 417408.8, 417049.3, 416668.5, 416538.1, 416419.8, 416312.2, 415586.8, 415505.8, 415055.3, 414628.1, 413844.2, 413706.0, 413656.9, 413319.6, 413146.6, 413042.3, 412525.1, 412522.3, 411153.8, 411210.3, 411465.5, 410980.8, 411078.1, 410887.1, 411087.5, 411571.1, 411839.0, 412095.6, 412209.4, 412408.7, 412524.4, 412191.3, 412468.2, 412389.4, 412330.3, 412125.3, 412031.6, 412021.9, 412221.7, 412215.6, 412076.8, 411031.0, 409969.1, 410151.9, 410357.2, 410254.3, 410260.1, 409817.0, 409467.4, 409371.6, 409304.6, 409141.4, 408738.2, 408598.1, 408499.7, 408388.9, 409397.7, 409065.1, 409051.4, 408746.5, 408907.5, 409509.7, 409667.8, 410079.9, 410274.8, 410411.6, 410577.7, 410666.4, 410571.1, 410631.6, 410533.8, 410647.9, 410756.9, 411175.3, 411262.3, 411408.9, 411812.2, 412068.7, 412301.3</pre>
 
 </article></slide><slide class=""><hgroup><h2>In closing</h2></hgroup><article  id="in-closing">
 
-<p>So, I hope you had fun playing around with the app and going through this presentation. I wish you all the best in your future data science career. This is the 9th course I follow in this module so I know how challenging it can be sometimes to keep going. Chapeau to you!</p>
+<p>I learned that working with geographic data is challenging, yet fun! The challenge in my specific case was that my data was longitudinal. Because each year, municipalities in the Netherlands merge, but also sometimes that split up), it was quite an ordeal to harmonize all this. It took me about 300 lines of code!</p>
 
-<p>If you are interested in geo-plotting, have a look at the tmap-package. It is well documented and -in as far as I can judge that- I feel it beats the alternatives.</p>
+<p>So, I hope you had fun playing around with the app and going through this presentation. I wish you all the best in your future data science career. This is the 9th course I follow in this module so I know how challenging it can be sometimes to keep going.</p>
+
+<p>Chapeau to you!</p>
+
+<p>And if you are interested in geo-plotting, have a look at the tmap-package. It is well documented and -in as far as I can judge that- I feel it beats the alternatives.</p>
 
 <p>Bye!</p></article></slide>
 
