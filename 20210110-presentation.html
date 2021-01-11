@@ -3196,17 +3196,19 @@ slide:not(.current) .plotly.html-widget{
 
 <slide class=""><hgroup><h2>Hi there!</h2></hgroup><article  id="hi-there">
 
-<p>Thanks for taking the time to go through this presentation!</p>
+<p>Thank you for taking the time to go through this presentation!</p>
 
-<p>One of the things I’ve had on my bucket list for years is creating a geographic visualization. I took this assignment as a reason to make one in R! I was a complete novice when it came to working with the data one needs for making such visualizations, so I’ll say something about what I did and what I learned.</p>
-
-<p>The first thing you need for geographic plotting is a data set that contains geographic information. The big difference with a &lsquo;normal&rsquo; data set (such as the data we typically work with in this specialization), is that geo-data also contains information about &lsquo;how to draw a map&rsquo;.</p>
+<ul>
+<li><p>One of the things I’ve had on my bucket list for years is creating a geographic visualization. I took this assignment as a reason to make one in R! I was a complete novice when it came to working with the data one needs for making such visualizations, so I’ll say something about what I did and what I learned.</p></li>
+<li><p>The first thing you need for geographic plotting is a data set that contains geographic information. The big difference with a &lsquo;normal&rsquo; data set (such as the data we typically work with in this specialization), is that geo-data also contains information about &lsquo;how to draw a map&rsquo;.</p></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>What I did</h2></hgroup><article  id="what-i-did">
 
-<p>For example, we could collect data about the cities of the country I live in (The Netherlands). &lsquo;Normal&rsquo; data in such a data set would be the number of inhabitants, founding year, how many restaurants it has, etc. Each row, thus, would be a city. Geo-data contains all the coordinates that would allow me to draw the map of these cities. So, per city I would need a table with an enormous amount of rows to hold all these coordinates!</p>
-
-<p>Luckily, there is a format -called simple features, or sf- that allows you to keep all these coordinates in just one cell, so it harmonizes well with the other data in the data set should you add this geo data. Such data looks as follows (look at the last column):</p>
+<ul>
+<li><p>For example, we could collect data about the cities of the country I live in (The Netherlands). &lsquo;Normal&rsquo; data in such a data set would be the number of inhabitants, founding year, how many restaurants it has, etc. Each row, thus, would be a city. Geo-data contains all the coordinates that would allow me to draw the map of these cities. So, per city I would need a table with an enormous amount of rows to hold all these coordinates!</p></li>
+<li><p>Luckily, there is a format -called simple features, or sf- that allows you to keep all these coordinates in just one cell, so it harmonizes well with the other data in the data set should you add this geo data. Such data looks as follows (look at the last column):</p></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Geo data</h2></hgroup><article  id="geo-data">
 
@@ -3222,15 +3224,14 @@ head(geo.cod, 1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>In closing</h2></hgroup><article  id="in-closing">
 
-<p>I learned that working with geographic data is challenging, yet fun! The challenge in my specific case was that my data was longitudinal. Because each year, municipalities in the Netherlands merge, but also sometimes that split up), it was quite an ordeal to harmonize all this. It took me about 300 lines of code!</p>
-
-<p>So, I hope you had fun playing around with the app and going through this presentation. I wish you all the best in your future data science career. This is the 9th course I follow in this module so I know how challenging it can be sometimes to keep going.</p>
+<ul>
+<li><p>I learned that working with geographic data is challenging, yet fun! The challenge in my specific case was that my data was longitudinal. Because each year, municipalities in the Netherlands merge, but also sometimes that split up), it was quite an ordeal to harmonize all this. It took me about 300 lines of code!</p></li>
+<li><p>So, I hope you had fun playing around with the app and going through this presentation. I wish you all the best in your future data science career. This is the 9th course I follow in this module so I know how challenging it can be sometimes to keep going.</p></li>
+</ul>
 
 <p>Chapeau to you!</p>
 
-<p>And if you are interested in geo-plotting, have a look at the tmap-package. It is well documented and -in as far as I can judge that- I feel it beats the alternatives.</p>
-
-<p>Bye!</p></article></slide>
+<p>.. and if you are interested in geo-plotting, have a look at the tmap-package. It is well documented and -in as far as I can judge that- I feel it beats the alternatives.</p></article></slide>
 
 
   <slide class="backdrop"></slide>
